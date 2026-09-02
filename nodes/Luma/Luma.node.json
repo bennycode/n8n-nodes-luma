@@ -1,0 +1,26 @@
+{
+	"node": "n8n-nodes-luma.luma",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Marketing", "Productivity"],
+	"alias": ["lu.ma", "Events", "Guests", "RSVP"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://github.com/bennycode/n8n-nodes-luma#credentials"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/bennycode/n8n-nodes-luma#readme"
+			}
+		],
+		"generic": [
+			{
+				"label": "Luma API reference",
+				"icon": "📖",
+				"url": "https://docs.luma.com/reference/getting-started-with-your-api"
+			}
+		]
+	}
+}

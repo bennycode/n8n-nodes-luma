@@ -1,0 +1,21 @@
+{
+	"type": "object",
+	"properties": {
+		"id": { "type": "string" },
+		"calendar_id": { "type": "string" },
+		"name": { "type": "string" },
+		"start_at": { "type": "string" },
+		"end_at": { "type": "string" },
+		"timezone": { "type": "string" },
+		"url": { "type": "string" },
+		"cover_url": { "type": "string" },
+		"visibility": { "type": "string" },
+		"location_type": { "type": "string" },
+		"meeting_url": { "type": "string" },
+		"registration_open": { "type": "boolean" },
+		"require_approval": { "type": "boolean" },
+		"spots_remaining": { "type": "number" },
+		"access": { "type": "string" }
+	},
+	"version": 1
+}

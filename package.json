@@ -1,0 +1,56 @@
+{
+	"name": "n8n-nodes-luma",
+	"version": "0.1.0",
+	"description": "n8n community node for Luma: manage events, guests and contacts through the Luma API",
+	"license": "MIT",
+	"homepage": "https://github.com/bennycode/n8n-nodes-luma",
+	"keywords": [
+		"n8n-community-node-package",
+		"luma",
+		"lu.ma",
+		"events"
+	],
+	"author": {
+		"name": "Benny Neugebauer",
+		"email": "mail@bennycode.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bennycode/n8n-nodes-luma.git"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"test": "vitest run",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/LumaApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Luma/Luma.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "*",
+		"eslint": "9.32.0",
+		"n8n-workflow": "*",
+		"prettier": "3.6.2",
+		"release-it": "^19.0.4",
+		"typescript": "5.9.2",
+		"vitest": "^3.2.4"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
