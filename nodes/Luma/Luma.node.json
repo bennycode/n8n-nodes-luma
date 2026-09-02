@@ -7,12 +7,12 @@
 	"resources": {
 		"credentialDocumentation": [
 			{
-				"url": "https://github.com/bennycode/n8n-nodes-luma#credentials"
+				"url": "https://github.com/n8n-io/n8n-nodes-luma#credentials"
 			}
 		],
 		"primaryDocumentation": [
 			{
-				"url": "https://github.com/bennycode/n8n-nodes-luma#readme"
+				"url": "https://github.com/n8n-io/n8n-nodes-luma#readme"
 			}
 		],
 		"generic": [
