@@ -6,6 +6,7 @@ This is an n8n community node. It lets you manage events, guests and contacts on
 
 [Installation](#installation)
 [Operations](#operations)
+[Trigger](#trigger)
 [Credentials](#credentials)
 [Compatibility](#compatibility)
 [Usage](#usage)
@@ -35,6 +36,14 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
     - **Update Status** to approve, decline or waitlist a guest
 - Ticket Type
     - **Create**, **Get**, **Get Many**, **Update** and **Delete** ticket types of an event
+
+## Trigger
+
+The **Luma Trigger** node registers a webhook on your calendar and starts the workflow for the selected event types, such as `guest.registered` or `event.updated`. Pick **All Events** to receive every type.
+
+Luma signs each delivery with HMAC-SHA256 over `<timestamp>.<body>` using the webhook secret it hands out on registration. The trigger checks that signature and rejects deliveries older than five minutes, so forged or replayed requests never start the workflow. Luma retries failed deliveries three times.
+
+If a webhook for the same URL already exists, the trigger reuses it and updates its event types instead of registering a second one.
 
 ## Credentials
 

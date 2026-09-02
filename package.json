@@ -38,7 +38,8 @@
 			"dist/credentials/LumaApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/Luma/Luma.node.js"
+			"dist/nodes/Luma/Luma.node.js",
+			"dist/nodes/LumaTrigger/LumaTrigger.node.js"
 		]
 	},
 	"devDependencies": {
