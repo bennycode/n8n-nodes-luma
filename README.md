@@ -22,6 +22,9 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
     - **Get** the calendar the API key belongs to
 - Contact
     - **Get Many** contacts, with search, membership status and sorting filters
+- Contact Tag and Event Tag
+    - **Create**, **Get Many**, **Update** and **Delete** tags
+    - **Apply** and **Unapply** a tag to contacts (by email or user ID) or to events
 - Event
     - **Create** an event
     - **Get** an event by ID or from a searchable list
@@ -33,6 +36,8 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
     - **Get Many** guests of an event, filtered by approval status and sort order
     - **Send Invites** so guests can accept an invitation
     - **Update Status** to approve, decline or waitlist a guest
+- Image
+    - **Upload** a JPEG or PNG from a binary field to the Luma CDN and get back its URL
 - Ticket Type
     - **Create**, **Get**, **Get Many**, **Update** and **Delete** ticket types of an event
 
@@ -53,6 +58,10 @@ Built and tested against n8n 1.x with `n8nNodesApiVersion` 1.
 Dates are ISO 8601 strings. Timezones are IANA names such as `Europe/Berlin`.
 
 Write operations that Luma answers with an empty body return `{ "success": true }`.
+
+### Images
+
+Luma only accepts cover images and description images hosted on its own CDN. Use **Image > Upload** with a binary field first, then pass the returned `file_url` to the event's **Cover Image URL** field or reference it in Markdown.
 
 ## Development
 

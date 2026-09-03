@@ -1,10 +1,13 @@
 import { NodeConnectionTypes, type INodeType, type INodeTypeDescription } from 'n8n-workflow';
 import { getEvents } from './listSearch/getEvents';
+import { getContactTags, getEventTags } from './loadOptions/getTags';
 import { getTicketTypes } from './loadOptions/getTicketTypes';
 import { calendarDescription } from './resources/calendar';
 import { contactDescription } from './resources/contact';
 import { eventDescription } from './resources/event';
 import { guestDescription } from './resources/guest';
+import { imageDescription } from './resources/image';
+import { contactTagDescription, eventTagDescription } from './resources/tag';
 import { ticketTypeDescription } from './resources/ticketType';
 import { LUMA_BASE_URL, LUMA_CREDENTIAL_NAME } from './shared/constants';
 
@@ -52,12 +55,24 @@ export class Luma implements INodeType {
 						value: 'contact',
 					},
 					{
+						name: 'Contact Tag',
+						value: 'contactTag',
+					},
+					{
 						name: 'Event',
 						value: 'event',
 					},
 					{
+						name: 'Event Tag',
+						value: 'eventTag',
+					},
+					{
 						name: 'Guest',
 						value: 'guest',
+					},
+					{
+						name: 'Image',
+						value: 'image',
 					},
 					{
 						name: 'Ticket Type',
@@ -68,8 +83,11 @@ export class Luma implements INodeType {
 			},
 			...calendarDescription,
 			...contactDescription,
+			...contactTagDescription,
 			...eventDescription,
+			...eventTagDescription,
 			...guestDescription,
+			...imageDescription,
 			...ticketTypeDescription,
 		],
 	};
@@ -79,6 +97,8 @@ export class Luma implements INodeType {
 			getEvents,
 		},
 		loadOptions: {
+			getContactTags,
+			getEventTags,
 			getTicketTypes,
 		},
 	};
