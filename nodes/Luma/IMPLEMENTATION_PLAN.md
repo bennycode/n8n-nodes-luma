@@ -22,8 +22,9 @@ search and load option methods next to the node class.
 - **Empty write responses** become `{ success: true }`.
 - **Scope of v1.** Calendar (get), Contact (get many), Event (create, get, get
   many, update), Guest (add, get, get many, send invites, update status),
-  Ticket Type (create, get, get many, update, delete). The API has 67
-  endpoints; tags, coupons, hosts, memberships and webhooks are left for later.
+  Ticket Type (create, get, get many, update, delete) and a webhook trigger.
+  The API has 67 endpoints; tags, coupons, hosts and memberships are left for
+  later.
 
 ## Steps
 
@@ -41,5 +42,5 @@ search and load option methods next to the node class.
 - [ ] Manual check with a real API key in `npm run dev`
 - [x] Ticket Type resource (create, get, get many, update, delete)
 - [ ] Optional: Event Tag and Contact Tag resources
-- [ ] Optional: Luma Trigger node using `/v2/webhooks`
+- [x] Luma Trigger node using `/v2/webhooks`, verifying `Webhook-Signature` (HMAC-SHA256 over `<t>.<body>`)
 - [ ] Optional: publish to npm with `npm run release`

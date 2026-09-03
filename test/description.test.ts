@@ -90,3 +90,14 @@ describe('Luma node description', () => {
 		expect(node.methods.loadOptions).toHaveProperty('getTicketTypes');
 	});
 });
+
+describe('Luma Trigger node description', () => {
+	it('is a webhook trigger with a full lifecycle', async () => {
+		const { LumaTrigger } = await import('../nodes/LumaTrigger/LumaTrigger.node');
+		const trigger = new LumaTrigger();
+		expect(trigger.description.group).toEqual(['trigger']);
+		expect(trigger.description.inputs).toEqual([]);
+		expect(trigger.description.webhooks?.[0]?.httpMethod).toBe('POST');
+		expect(Object.keys(trigger.webhookMethods.default).sort()).toEqual(['checkExists', 'create', 'delete']);
+	});
+});

@@ -1,0 +1,26 @@
+{
+	"node": "n8n-nodes-luma.lumaTrigger",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Marketing", "Productivity"],
+	"alias": ["lu.ma", "Events", "Webhook"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://github.com/bennycode/n8n-nodes-luma#credentials"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/bennycode/n8n-nodes-luma#trigger"
+			}
+		],
+		"generic": [
+			{
+				"label": "Luma webhooks",
+				"icon": "📖",
+				"url": "https://help.luma.com/p/webhooks"
+			}
+		]
+	}
+}
