@@ -4,6 +4,7 @@ import { Luma } from '../nodes/Luma/Luma.node';
 import { eventGetManyQueryParameters } from '../nodes/Luma/resources/event/getAll';
 import { guestGetManyQueryParameters } from '../nodes/Luma/resources/guest/getAll';
 import { contactGetManyQueryParameters } from '../nodes/Luma/resources/contact';
+import lumaPaths from './fixtures/luma-paths.json';
 
 const { description } = new Luma();
 const properties = description.properties;
@@ -75,6 +76,17 @@ describe('Luma node description', () => {
 		}
 	});
 
+	it('only calls endpoints and methods that exist in the Luma OpenAPI spec', () => {
+		const documented: Record<string, string[]> = lumaPaths;
+		for (const resource of resourceValues) {
+			for (const operation of operationsFor(resource)) {
+				const { url, method } = operation.routing?.request ?? {};
+				expect(documented, `${resource}.${operation.value} uses unknown path ${url}`).toHaveProperty(String(url));
+				expect(documented[String(url)], `${resource}.${operation.value} ${method} ${url}`).toContain(method);
+			}
+		}
+	});
+
 	it('registers the list search and load options methods it references', () => {
 		const node = new Luma();
 		const listSearchMethods = properties.flatMap((property) =>
@@ -87,7 +99,17 @@ describe('Luma node description', () => {
 		for (const method of listSearchMethods) {
 			expect(node.methods.listSearch).toHaveProperty(method);
 		}
-		expect(node.methods.loadOptions).toHaveProperty('getTicketTypes');
+		const loadOptionsMethods = properties.flatMap((property) => {
+			const nested = (property.options ?? []).filter((option): option is INodeProperties => 'type' in option);
+			return [property, ...nested].flatMap((candidate) => {
+				const method = candidate.typeOptions?.loadOptionsMethod;
+				return method ? [method] : [];
+			});
+		});
+		expect(loadOptionsMethods.length).toBeGreaterThan(0);
+		for (const method of loadOptionsMethods) {
+			expect(node.methods.loadOptions).toHaveProperty(method);
+		}
 	});
 });
 

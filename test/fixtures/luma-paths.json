@@ -1,0 +1,200 @@
+{
+	"/v1/events/get": [
+		"GET"
+	],
+	"/v1/calendars/get": [
+		"GET"
+	],
+	"/v1/calendars/events/list": [
+		"GET"
+	],
+	"/v1/events/guests/get": [
+		"GET"
+	],
+	"/v1/events/guests/list": [
+		"GET"
+	],
+	"/v1/users/get-self": [
+		"GET"
+	],
+	"/v1/calendars/contact-tags/list": [
+		"GET"
+	],
+	"/v1/calendars/event-tags/list": [
+		"GET"
+	],
+	"/v1/calendars/admins/list": [
+		"GET"
+	],
+	"/v1/entities/lookup": [
+		"GET"
+	],
+	"/v1/calendars/events/lookup": [
+		"GET"
+	],
+	"/v1/calendars/contacts/list": [
+		"GET"
+	],
+	"/v1/events/coupons/list": [
+		"GET"
+	],
+	"/v1/calendars/coupons/list": [
+		"GET"
+	],
+	"/v1/events/ticket-types/list": [
+		"GET"
+	],
+	"/v1/events/ticket-types/get": [
+		"GET"
+	],
+	"/v1/memberships/tiers/list": [
+		"GET"
+	],
+	"/v1/webhooks/list": [
+		"GET"
+	],
+	"/v2/webhooks/get": [
+		"GET"
+	],
+	"/v1/organizations/admins/list": [
+		"GET"
+	],
+	"/v1/organizations/calendars/list": [
+		"GET"
+	],
+	"/v1/organizations/events/list": [
+		"GET"
+	],
+	"/v1/events/create": [
+		"POST"
+	],
+	"/v1/events/update": [
+		"POST"
+	],
+	"/v1/events/guests/update-status": [
+		"POST"
+	],
+	"/v1/events/guests/update-tickets": [
+		"POST"
+	],
+	"/v1/events/guests/send-invites": [
+		"POST"
+	],
+	"/v1/events/guests/add": [
+		"POST"
+	],
+	"/v1/events/hosts/add": [
+		"POST"
+	],
+	"/v1/events/hosts/update": [
+		"POST"
+	],
+	"/v1/events/hosts/remove": [
+		"POST"
+	],
+	"/v1/events/coupons/create": [
+		"POST"
+	],
+	"/v1/events/coupons/update": [
+		"POST"
+	],
+	"/v1/calendars/coupons/create": [
+		"POST"
+	],
+	"/v1/calendars/coupons/update": [
+		"POST"
+	],
+	"/v1/calendars/contacts/import": [
+		"POST"
+	],
+	"/v1/calendars/contacts/block": [
+		"POST"
+	],
+	"/v1/calendars/contacts/remove": [
+		"POST"
+	],
+	"/v1/calendars/contacts/restore": [
+		"POST"
+	],
+	"/v1/calendars/contact-tags/create": [
+		"POST"
+	],
+	"/v1/calendars/contact-tags/update": [
+		"POST"
+	],
+	"/v1/calendars/contact-tags/delete": [
+		"POST"
+	],
+	"/v1/calendars/contact-tags/apply": [
+		"POST"
+	],
+	"/v1/calendars/contact-tags/unapply": [
+		"POST"
+	],
+	"/v1/calendars/event-tags/create": [
+		"POST"
+	],
+	"/v1/calendars/event-tags/update": [
+		"POST"
+	],
+	"/v1/calendars/event-tags/delete": [
+		"POST"
+	],
+	"/v1/calendars/event-tags/apply": [
+		"POST"
+	],
+	"/v1/calendars/event-tags/unapply": [
+		"POST"
+	],
+	"/v1/calendars/events/add": [
+		"POST"
+	],
+	"/v1/calendars/events/approve": [
+		"POST"
+	],
+	"/v1/calendars/events/reject": [
+		"POST"
+	],
+	"/v1/images/create-upload-url": [
+		"POST"
+	],
+	"/v1/events/ticket-types/create": [
+		"POST"
+	],
+	"/v1/events/ticket-types/update": [
+		"POST"
+	],
+	"/v1/events/ticket-types/delete": [
+		"POST"
+	],
+	"/v1/memberships/members/add": [
+		"POST"
+	],
+	"/v1/memberships/members/update-status": [
+		"POST"
+	],
+	"/v2/webhooks/create": [
+		"POST"
+	],
+	"/v2/webhooks/update": [
+		"POST"
+	],
+	"/v1/webhooks/delete": [
+		"POST"
+	],
+	"/v1/events/cancel/request": [
+		"POST"
+	],
+	"/v1/events/cancel": [
+		"POST"
+	],
+	"/v1/calendars/update": [
+		"POST"
+	],
+	"/v2/organizations/calendars/create": [
+		"POST"
+	],
+	"/v1/organizations/events/transfer-calendar": [
+		"POST"
+	]
+}
