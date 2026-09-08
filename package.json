@@ -24,6 +24,7 @@
 		"dev": "n8n-node dev",
 		"lint": "n8n-node lint",
 		"lint:fix": "n8n-node lint --fix",
+		"lint:memory": "eslint --config eslint.memory.config.mjs nodes credentials",
 		"test": "vitest run",
 		"release": "n8n-node release",
 		"prepublishOnly": "n8n-node prerelease"
@@ -49,6 +50,7 @@
 		"prettier": "3.6.2",
 		"release-it": "^19.0.4",
 		"typescript": "5.9.2",
+		"typescript-eslint": "^8.69.0",
 		"vitest": "^3.2.4"
 	},
 	"peerDependencies": {

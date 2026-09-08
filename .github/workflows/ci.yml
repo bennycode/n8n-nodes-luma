@@ -30,5 +30,11 @@ jobs:
       - name: Run lint
         run: 'npm run lint'
 
+      - name: Run memory lint
+        run: 'npm run lint:memory'
+
+      - name: Run tests
+        run: 'npm test'
+
       - name: Run build
         run: 'npm run build'
