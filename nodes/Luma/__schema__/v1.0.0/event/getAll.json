@@ -1,0 +1,252 @@
+{
+	"type": "object",
+	"properties": {
+		"platform": {
+			"type": "string"
+		},
+		"id": {
+			"type": "string"
+		},
+		"user_id": {
+			"type": "string"
+		},
+		"calendar_id": {
+			"type": "string"
+		},
+		"start_at": {
+			"type": "string"
+		},
+		"duration_interval": {
+			"type": "string"
+		},
+		"end_at": {
+			"type": "string"
+		},
+		"created_at": {
+			"type": "string"
+		},
+		"timezone": {
+			"type": "string"
+		},
+		"name": {
+			"type": "string"
+		},
+		"cover_url": {
+			"type": "string"
+		},
+		"url": {
+			"type": "string"
+		},
+		"visibility": {
+			"type": "string"
+		},
+		"location_type": {
+			"type": "string"
+		},
+		"location_visibility": {
+			"type": "string"
+		},
+		"waitlist_status": {
+			"type": "string"
+		},
+		"registration_open": {
+			"type": "boolean"
+		},
+		"require_approval": {
+			"type": "boolean"
+		},
+		"spots_remaining": {
+			"type": "number"
+		},
+		"display_price": {
+			"type": "object",
+			"properties": {
+				"amount": {
+					"type": "number"
+				},
+				"currency": {
+					"type": "string"
+				},
+				"is_flexible": {
+					"type": "boolean"
+				}
+			}
+		},
+		"access": {
+			"type": "string"
+		},
+		"geo_address_json": {
+			"type": "object",
+			"properties": {
+				"address": {
+					"type": "string"
+				},
+				"city": {
+					"type": "string"
+				},
+				"region": {
+					"type": "string"
+				},
+				"country": {
+					"type": "string"
+				},
+				"city_state": {
+					"type": "string"
+				},
+				"full_address": {
+					"type": "string"
+				},
+				"google_maps_place_id": {
+					"type": "string"
+				},
+				"apple_maps_place_id": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				}
+			}
+		},
+		"coordinate": {
+			"type": "object",
+			"properties": {
+				"longitude": {
+					"type": "number"
+				},
+				"latitude": {
+					"type": "number"
+				}
+			}
+		},
+		"meeting_url": {
+			"type": "string"
+		},
+		"registration_questions": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"label": {
+						"type": "string"
+					},
+					"required": {
+						"type": "boolean"
+					},
+					"source": {
+						"type": "object",
+						"properties": {
+							"type": {
+								"type": "string"
+							},
+							"calendar_api_id": {
+								"type": "string"
+							}
+						}
+					},
+					"question_type": {
+						"type": "string"
+					},
+					"collect_job_title": {
+						"type": "boolean"
+					},
+					"job_title_label": {
+						"type": "string"
+					},
+					"options": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"multiple": {
+						"type": "boolean"
+					},
+					"multiline": {
+						"type": "boolean"
+					},
+					"terms": {
+						"type": "object",
+						"properties": {
+							"content_type": {
+								"type": "string"
+							},
+							"content_md": {
+								"type": "string"
+							},
+							"collect_signature": {
+								"type": "boolean"
+							},
+							"require_review": {
+								"type": "boolean"
+							},
+							"url": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		},
+		"max_capacity": {
+			"type": "number"
+		},
+		"can_register_for_multiple_tickets": {
+			"type": "boolean"
+		},
+		"feedback_email": {
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"delay": {
+					"type": "string"
+				}
+			}
+		},
+		"host": {
+			"type": "string"
+		},
+		"tags": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"submitted_by": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"avatar_url": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"first_name": {
+					"type": "string"
+				},
+				"last_name": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"version": 1
+}

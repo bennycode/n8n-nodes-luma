@@ -21,6 +21,59 @@ function operationsFor(resource: string) {
 	return (operation?.options ?? []).filter(isOptions);
 }
 
+type DocumentedEndpoints = Record<string, Record<string, { query: string[]; body: string[] }>>;
+
+const documented: DocumentedEndpoints = lumaPaths;
+
+type SentParameter = { type: 'query' | 'body'; property: string };
+
+/** Collects `routing.send` declarations, including those nested in collections. */
+function sendsIn(property: INodeProperties): SentParameter[] {
+	const send = property.routing?.send;
+	const own: SentParameter[] =
+		(send?.type === 'query' || send?.type === 'body') && send.property
+			? [{ type: send.type, property: send.property }]
+			: [];
+
+	const nested = (property.options ?? []).flatMap((option) => {
+		if (typeof option !== 'object' || option === null) return [];
+		// `collection` options are properties themselves; `fixedCollection` options
+		// wrap their fields in `values`.
+		const candidates = 'values' in option ? (option.values ?? []) : [option];
+		return candidates
+			.filter((candidate): candidate is INodeProperties => 'type' in candidate)
+			.flatMap(sendsIn);
+	});
+
+	return [...own, ...nested];
+}
+
+/**
+ * Every query and body parameter an operation puts on the wire: the ones the
+ * operation's own routing sets, plus those contributed by the fields that are
+ * visible for it.
+ */
+function parametersSentBy(resource: string, operation: INodePropertyOptions): SentParameter[] {
+	const request = operation.routing?.request;
+	const fromOperation: SentParameter[] = [
+		...Object.keys(request?.qs ?? {}).map((property) => ({ type: 'query' as const, property })),
+		...Object.keys((request?.body as Record<string, unknown>) ?? {}).map((property) => ({
+			type: 'body' as const,
+			property,
+		})),
+	];
+
+	const fromFields = properties
+		.filter((property) => {
+			const show = property.displayOptions?.show;
+			if (!show?.resource?.includes(resource)) return false;
+			return !show.operation || show.operation.includes(operation.value);
+		})
+		.flatMap(sendsIn);
+
+	return [...fromOperation, ...fromFields];
+}
+
 function queryPropertiesIn(collection: INodeProperties | undefined): string[] {
 	return (collection?.options ?? [])
 		.filter((option): option is INodeProperties => 'type' in option)
@@ -77,12 +130,60 @@ describe('Luma node description', () => {
 	});
 
 	it('only calls endpoints and methods that exist in the Luma OpenAPI spec', () => {
-		const documented: Record<string, string[]> = lumaPaths;
 		for (const resource of resourceValues) {
 			for (const operation of operationsFor(resource)) {
 				const { url, method } = operation.routing?.request ?? {};
-				expect(documented, `${resource}.${operation.value} uses unknown path ${url}`).toHaveProperty(String(url));
-				expect(documented[String(url)], `${resource}.${operation.value} ${method} ${url}`).toContain(method);
+				expect(documented, `${resource}.${operation.value} uses unknown path ${url}`).toHaveProperty(
+					String(url),
+				);
+				expect(
+					Object.keys(documented[String(url)]),
+					`${resource}.${operation.value} ${method} ${url}`,
+				).toContain(method);
+			}
+		}
+	});
+
+	it('only sends query and body parameters the endpoint accepts', () => {
+		const problems: string[] = [];
+		let checked = 0;
+		for (const resource of resourceValues) {
+			for (const operation of operationsFor(resource)) {
+				const { url, method } = operation.routing?.request ?? {};
+				const accepted = documented[String(url)]?.[String(method)];
+				if (!accepted) continue; // covered by the endpoint test above
+
+				for (const { type, property } of parametersSentBy(resource, operation)) {
+					checked += 1;
+					const allowed = type === 'query' ? accepted.query : accepted.body;
+					if (!allowed.includes(property)) {
+						problems.push(
+							`${resource}.${String(operation.value)} sends ${type} "${property}", which ${method} ${url} does not accept`,
+						);
+					}
+				}
+			}
+		}
+		expect(problems).toEqual([]);
+		// Guards against the collector silently walking past every field and
+		// reporting a clean run because it found nothing at all.
+		expect(checked).toBeGreaterThan(100);
+	});
+
+	it('ships an output schema for every operation', () => {
+		// Catches an operation added without re-running `npm run sync:openapi`.
+		// Globbed rather than read from disk: n8n Cloud community nodes may not
+		// import `node:fs`, and the rule covers tests too.
+		const shipped = new Set(
+			Object.keys(import.meta.glob('../nodes/Luma/__schema__/v1.0.0/*/*.json')).map((path) =>
+				path.split('/').slice(-2).join('/').replace(/\.json$/, ''),
+			),
+		);
+		expect(shipped.size).toBeGreaterThan(0);
+
+		for (const resource of resourceValues) {
+			for (const operation of operationsFor(resource)) {
+				expect([...shipped]).toContain(`${resource}/${String(operation.value)}`);
 			}
 		}
 	});

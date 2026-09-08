@@ -22,6 +22,7 @@ export class LumaApi implements ICredentialType {
 			type: 'string',
 			typeOptions: { password: true },
 			default: '',
+			required: true,
 			description:
 				'Generate a key under Settings > Options > API in your Luma calendar. Calendar keys allow 200 requests per minute, organization keys 500.',
 		},

@@ -1,0 +1,12 @@
+{
+	"type": "object",
+	"properties": {
+		"removed_count": {
+			"type": "number"
+		},
+		"skipped_count": {
+			"type": "number"
+		}
+	},
+	"version": 1
+}

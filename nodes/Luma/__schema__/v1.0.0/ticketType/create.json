@@ -1,0 +1,45 @@
+{
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string"
+		},
+		"require_approval": {
+			"type": "boolean"
+		},
+		"is_hidden": {
+			"type": "boolean"
+		},
+		"description": {
+			"type": "string"
+		},
+		"valid_start_at": {
+			"type": "string"
+		},
+		"valid_end_at": {
+			"type": "string"
+		},
+		"max_capacity": {
+			"type": "number"
+		},
+		"type": {
+			"type": "string"
+		},
+		"cents": {
+			"type": "number"
+		},
+		"currency": {
+			"type": "string"
+		},
+		"is_flexible": {
+			"type": "boolean"
+		},
+		"min_cents": {
+			"type": "number"
+		},
+		"id": {
+			"type": "string"
+		}
+	},
+	"version": 1
+}

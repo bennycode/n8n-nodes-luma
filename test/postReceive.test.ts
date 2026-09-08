@@ -3,7 +3,7 @@ import { NodeApiError } from 'n8n-workflow';
 import { describe, expect, it } from 'vitest';
 import { handleLumaError, returnSuccess } from '../nodes/Luma/shared/postReceive';
 
-function createContext(): IExecuteSingleFunctions {
+function createContext(parameters: Record<string, string> = {}): IExecuteSingleFunctions {
 	const context: Partial<IExecuteSingleFunctions> = {
 		getNode: () => ({
 			id: 'test',
@@ -13,6 +13,9 @@ function createContext(): IExecuteSingleFunctions {
 			position: [0, 0],
 			parameters: {},
 		}),
+		// n8n returns the fallback for parameters the current operation does not define.
+		getNodeParameter: ((name: string, fallback?: unknown) => parameters[name] ?? fallback) as
+			IExecuteSingleFunctions['getNodeParameter'],
 	};
 	return context as IExecuteSingleFunctions;
 }
@@ -42,6 +45,37 @@ describe('handleLumaError', () => {
 		const response: IN8nHttpFullResponse = { statusCode: 429, headers: {}, body: { message: 'Too many requests' } };
 		const error = await handleLumaError.call(createContext(), [{ json: {} }], response).catch((e) => e);
 		expect(error.description).toContain('200 requests per minute');
+	});
+
+	it('names the identifier that was not found on 404', async () => {
+		const response: IN8nHttpFullResponse = {
+			statusCode: 404,
+			headers: {},
+			body: { message: 'Event not found.' },
+		};
+		const context = createContext({ event: 'evt-Ab12Cd34' });
+		const error = await handleLumaError.call(context, [{ json: {} }], response).catch((e) => e);
+		expect(error.message).toBe('Luma could not find "evt-Ab12Cd34"');
+		// The API's own wording is kept, just moved out of the headline.
+		expect(error.description).toContain('Event not found.');
+		expect(error.description).toContain('Event IDs start with');
+	});
+
+	it('reports the guest identifier when that is the parameter on screen', async () => {
+		const response: IN8nHttpFullResponse = { statusCode: 404, headers: {}, body: {} };
+		const context = createContext({ guestId: 'gst-Zz99' });
+		const error = await handleLumaError.call(context, [{ json: {} }], response).catch((e) => e);
+		expect(error.message).toBe('Luma could not find "gst-Zz99"');
+	});
+
+	it('keeps the API message on 404 when no identifier is on screen', async () => {
+		const response: IN8nHttpFullResponse = {
+			statusCode: 404,
+			headers: {},
+			body: { message: 'Calendar not found.' },
+		};
+		const error = await handleLumaError.call(createContext(), [{ json: {} }], response).catch((e) => e);
+		expect(error.message).toBe('Calendar not found.');
 	});
 
 	it('falls back to a status message when the body has none', async () => {

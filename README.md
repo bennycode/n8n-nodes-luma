@@ -81,7 +81,22 @@ npm run build   # compiles to dist/
 npm run lint    # community node lint rules
 npm run lint:memory  # memory-safety rules, see below
 npm test        # unit tests
+npm run sync:openapi  # regenerate everything derived from Luma's OpenAPI spec
 ```
+
+### Keeping up with the Luma API
+
+`npm run sync:openapi` downloads <https://public-api.luma.com/openapi.json> and
+rewrites the two things this repository derives from it: the output schemas
+under `nodes/Luma/__schema__/v1.0.0/`, and `test/fixtures/luma-paths.json`,
+which lists every documented endpoint with the query and body parameters it
+accepts. It reads the built node to learn which endpoint belongs to which
+resource and operation, so run `npm run build` first.
+
+The fixture is what lets `test/description.test.ts` prove offline that the node
+only calls endpoints and parameters Luma actually documents. Run the sync after
+adding an operation, and whenever Luma ships API changes; the tests fail if an
+operation has no schema.
 
 ### Memory lint
 

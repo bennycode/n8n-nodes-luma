@@ -1,0 +1,18 @@
+{
+	"type": "object",
+	"properties": {
+		"file_url": {
+			"type": "string"
+		},
+		"content_type": {
+			"type": "string"
+		},
+		"file_name": {
+			"type": "string"
+		},
+		"size": {
+			"type": "number"
+		}
+	},
+	"version": 1
+}

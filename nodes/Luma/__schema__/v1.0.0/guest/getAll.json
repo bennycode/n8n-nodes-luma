@@ -1,0 +1,112 @@
+{
+	"type": "object",
+	"properties": {
+		"id": {
+			"type": "string"
+		},
+		"user_id": {
+			"type": "string"
+		},
+		"user_email": {
+			"type": "string"
+		},
+		"user_name": {
+			"type": "string"
+		},
+		"user_first_name": {
+			"type": "string"
+		},
+		"user_last_name": {
+			"type": "string"
+		},
+		"approval_status": {
+			"type": "string"
+		},
+		"check_in_qr_code": {
+			"type": "string"
+		},
+		"eth_address": {
+			"type": "string"
+		},
+		"invited_at": {
+			"type": "string"
+		},
+		"joined_at": {
+			"type": "string"
+		},
+		"phone_number": {
+			"type": "string"
+		},
+		"registered_at": {
+			"type": "string"
+		},
+		"registration_answers": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"label": {
+						"type": "string"
+					},
+					"question_id": {
+						"type": "string"
+					},
+					"value": {
+						"type": "string"
+					},
+					"question_type": {
+						"type": "string"
+					},
+					"multiple": {
+						"type": "boolean"
+					},
+					"multiline": {
+						"type": "boolean"
+					}
+				}
+			}
+		},
+		"solana_address": {
+			"type": "string"
+		},
+		"utm_source": {
+			"type": "string"
+		},
+		"event_tickets": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"amount": {
+						"type": "number"
+					},
+					"amount_discount": {
+						"type": "number"
+					},
+					"amount_tax": {
+						"type": "number"
+					},
+					"currency": {
+						"type": "string"
+					},
+					"checked_in_at": {
+						"type": "string"
+					},
+					"event_ticket_type_id": {
+						"type": "string"
+					},
+					"is_captured": {
+						"type": "boolean"
+					},
+					"name": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	},
+	"version": 1
+}

@@ -13,6 +13,27 @@ const DESCRIPTIONS_BY_STATUS: Record<number, string> = {
 	429: 'Luma allows 200 requests per minute for calendar API keys and 500 for organization keys. Use the batching settings under Options to space out requests.',
 };
 
+/**
+ * Identifier parameters, in the order they should be reported. Only one of
+ * these is on screen for any given operation; the rest resolve to the fallback.
+ */
+const IDENTIFIER_PARAMETERS = ['event', 'guestId', 'ticketTypeId', 'tagId', 'tag'] as const;
+
+/**
+ * The identifier the failing request was about, so a 404 can name it. Reading a
+ * parameter that the current operation does not define returns the fallback,
+ * and `extractValue` unwraps resourceLocator values to the bare ID.
+ */
+function findIdentifier(context: IExecuteSingleFunctions): string | undefined {
+	for (const parameter of IDENTIFIER_PARAMETERS) {
+		const value = context.getNodeParameter(parameter, '', { extractValue: true });
+		if (typeof value === 'string' && value !== '') {
+			return value;
+		}
+	}
+	return undefined;
+}
+
 function readApiMessage(body: unknown): string | undefined {
 	if (typeof body === 'object' && body !== null && 'message' in body) {
 		const { message } = body;
@@ -41,9 +62,16 @@ export async function handleLumaError(
 		message: apiMessage ?? null,
 	};
 
+	const identifier = response.statusCode === 404 ? findIdentifier(this) : undefined;
+	const hint = DESCRIPTIONS_BY_STATUS[response.statusCode];
+
+	// Naming the identifier is more useful than Luma's generic "not found", so it
+	// takes over the message and the API's own wording moves into the description.
 	throw new NodeApiError(this.getNode(), errorBody, {
-		message: apiMessage ?? `Luma request failed with status ${response.statusCode}`,
-		description: DESCRIPTIONS_BY_STATUS[response.statusCode],
+		message: identifier
+			? `Luma could not find "${identifier}"`
+			: (apiMessage ?? `Luma request failed with status ${response.statusCode}`),
+		description: [identifier ? apiMessage : undefined, hint].filter(Boolean).join(' ') || undefined,
 		httpCode: String(response.statusCode),
 	});
 }
