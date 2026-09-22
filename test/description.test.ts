@@ -92,7 +92,9 @@ describe('Luma node description', () => {
 			const operations = operationsFor(resource);
 			expect(operations.length, resource).toBeGreaterThan(0);
 			for (const operation of operations) {
-				expect(operation.routing?.request?.url, `${resource}.${operation.value}`).toMatch(/^\/v\d\//);
+				expect(operation.routing?.request?.url, `${resource}.${operation.value}`).toMatch(
+					/^\/v\d\//,
+				);
 				expect(operation.routing?.request?.ignoreHttpStatusErrors).toBe(true);
 				expect(operation.routing?.output?.postReceive?.length).toBeGreaterThan(0);
 			}
@@ -106,7 +108,10 @@ describe('Luma node description', () => {
 			for (const resource of show.resource ?? []) {
 				expect(resourceValues, property.name).toContain(resource);
 				for (const operation of show.operation ?? []) {
-					expect(operationsFor(String(resource)).map((o) => o.value), property.name).toContain(operation);
+					expect(
+						operationsFor(String(resource)).map((o) => o.value),
+						property.name,
+					).toContain(operation);
 				}
 			}
 		}
@@ -121,7 +126,8 @@ describe('Luma node description', () => {
 		for (const { resource, expected } of cases) {
 			const filters = properties.find(
 				(property) =>
-					property.name === 'filters' && property.displayOptions?.show?.resource?.includes(resource),
+					property.name === 'filters' &&
+					property.displayOptions?.show?.resource?.includes(resource),
 			);
 			for (const parameter of queryPropertiesIn(filters)) {
 				expect(expected, `${resource} pagination misses ${parameter}`).toContain(parameter);
@@ -133,9 +139,10 @@ describe('Luma node description', () => {
 		for (const resource of resourceValues) {
 			for (const operation of operationsFor(resource)) {
 				const { url, method } = operation.routing?.request ?? {};
-				expect(documented, `${resource}.${operation.value} uses unknown path ${url}`).toHaveProperty(
-					String(url),
-				);
+				expect(
+					documented,
+					`${resource}.${operation.value} uses unknown path ${url}`,
+				).toHaveProperty(String(url));
 				expect(
 					Object.keys(documented[String(url)]),
 					`${resource}.${operation.value} ${method} ${url}`,
@@ -176,7 +183,11 @@ describe('Luma node description', () => {
 		// import `node:fs`, and the rule covers tests too.
 		const shipped = new Set(
 			Object.keys(import.meta.glob('../nodes/Luma/__schema__/v1.0.0/*/*.json')).map((path) =>
-				path.split('/').slice(-2).join('/').replace(/\.json$/, ''),
+				path
+					.split('/')
+					.slice(-2)
+					.join('/')
+					.replace(/\.json$/, ''),
 			),
 		);
 		expect(shipped.size).toBeGreaterThan(0);
@@ -186,6 +197,23 @@ describe('Luma node description', () => {
 				expect([...shipped]).toContain(`${resource}/${String(operation.value)}`);
 			}
 		}
+	});
+
+	it('uses the right indefinite article in every visible string', () => {
+		const texts: string[] = [];
+		const collect = (property: INodeProperties) => {
+			texts.push(property.displayName, property.description ?? '', property.placeholder ?? '');
+			for (const option of property.options ?? []) {
+				if ('action' in option)
+					texts.push(option.name, option.action ?? '', option.description ?? '');
+				else if ('type' in option) collect(option);
+			}
+		};
+		properties.forEach(collect);
+		const wrong = texts
+			.map((text) => text.replace(/<[^>]+>/g, ''))
+			.filter((text) => /\ba [aeio]/i.test(text) || /\ban [^aeiou]/i.test(text));
+		expect(wrong).toEqual([]);
 	});
 
 	it('registers the list search and load options methods it references', () => {
@@ -201,7 +229,9 @@ describe('Luma node description', () => {
 			expect(node.methods.listSearch).toHaveProperty(method);
 		}
 		const loadOptionsMethods = properties.flatMap((property) => {
-			const nested = (property.options ?? []).filter((option): option is INodeProperties => 'type' in option);
+			const nested = (property.options ?? []).filter(
+				(option): option is INodeProperties => 'type' in option,
+			);
 			return [property, ...nested].flatMap((candidate) => {
 				const method = candidate.typeOptions?.loadOptionsMethod;
 				return method ? [method] : [];
@@ -221,6 +251,10 @@ describe('Luma Trigger node description', () => {
 		expect(trigger.description.group).toEqual(['trigger']);
 		expect(trigger.description.inputs).toEqual([]);
 		expect(trigger.description.webhooks?.[0]?.httpMethod).toBe('POST');
-		expect(Object.keys(trigger.webhookMethods.default).sort()).toEqual(['checkExists', 'create', 'delete']);
+		expect(Object.keys(trigger.webhookMethods.default).sort()).toEqual([
+			'checkExists',
+			'create',
+			'delete',
+		]);
 	});
 });

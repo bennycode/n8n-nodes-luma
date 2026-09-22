@@ -15,7 +15,8 @@ const TAG_COLOR_OPTIONS: INodePropertyOptions[] = [
 ];
 
 /** Turns a comma separated string into a trimmed list, dropping empty entries. */
-export const COMMA_LIST_EXPRESSION = '={{ String($value).split(",").map((entry) => entry.trim()).filter(Boolean) }}';
+export const COMMA_LIST_EXPRESSION =
+	'={{ String($value).split(",").map((entry) => entry.trim()).filter(Boolean) }}';
 
 function bodyField(property: string): INodeProperties['routing'] {
 	return { send: { type: 'body', property } };
@@ -28,6 +29,7 @@ function bodyField(property: string): INodeProperties['routing'] {
 export function buildTagDescription(kind: TagKind): INodeProperties[] {
 	const resource = `${kind}Tag`;
 	const label = kind === 'contact' ? 'contact' : 'event';
+	const aTag = kind === 'contact' ? 'a contact tag' : 'an event tag';
 	const basePath = `/v1/calendars/${kind}-tags`;
 	const loadOptionsMethod = kind === 'contact' ? 'getContactTags' : 'getEventTags';
 
@@ -150,22 +152,22 @@ export function buildTagDescription(kind: TagKind): INodeProperties[] {
 				{
 					name: 'Apply',
 					value: 'apply',
-					action: `Apply a ${label} tag`,
+					action: `Apply ${aTag}`,
 					description: `Add the tag to ${label}s that are already on the calendar`,
 					routing: writeRouting('apply', false),
 				},
 				{
 					name: 'Create',
 					value: 'create',
-					action: `Create a ${label} tag`,
-					description: `Create a ${label} tag on the calendar`,
+					action: `Create ${aTag}`,
+					description: `Create ${aTag} on the calendar`,
 					routing: writeRouting('create', false),
 				},
 				{
 					name: 'Delete',
 					value: 'delete',
-					action: `Delete a ${label} tag`,
-					description: `Delete a ${label} tag from the calendar`,
+					action: `Delete ${aTag}`,
+					description: `Delete ${aTag} from the calendar`,
 					routing: writeRouting('delete'),
 				},
 				{
@@ -195,15 +197,15 @@ export function buildTagDescription(kind: TagKind): INodeProperties[] {
 				{
 					name: 'Unapply',
 					value: 'unapply',
-					action: `Remove a ${label} tag`,
+					action: `Remove ${aTag}`,
 					description: `Remove the tag from ${label}s on the calendar`,
 					routing: writeRouting('unapply', false),
 				},
 				{
 					name: 'Update',
 					value: 'update',
-					action: `Update a ${label} tag`,
-					description: `Rename or recolor a ${label} tag`,
+					action: `Update ${aTag}`,
+					description: `Rename or recolor ${aTag}`,
 					routing: writeRouting('update'),
 				},
 			],
