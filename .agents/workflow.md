@@ -65,8 +65,8 @@ When asked to build or update a node in this project, follow these steps:
   allow the user to manually test the node in n8n to verify that it does what
   is expected
 - Make sure to use **proper types whenever possible**
-- If you are updating the npm package version, make sure to **update
-  CHANGELOG.md** in the root of the repository
+- `CHANGELOG.md` is generated from commit messages by `npm run release`.
+  **Never edit it by hand**; write commit subjects that read well in a changelog
 
 ## CLI
 This project uses n8n's CLI tool for developing community nodes: `n8n-node`. It

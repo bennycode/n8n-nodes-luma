@@ -88,6 +88,9 @@ npm run sync:openapi  # regenerate everything derived from Luma's OpenAPI spec
 Prettier runs on staged files through a [lefthook](https://lefthook.dev) pre-commit hook.
 `npm install` sets the hook up; if your npm blocks install scripts, run `npx lefthook install` once.
 
+`CHANGELOG.md` is generated from commit messages when `npm run release` runs, so it is never
+edited by hand. Write commit subjects that read well in a changelog.
+
 ### Keeping up with the Luma API
 
 `npm run sync:openapi` downloads <https://public-api.luma.com/openapi.json> and

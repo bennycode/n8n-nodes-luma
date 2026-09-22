@@ -77,8 +77,8 @@ project _may_ contain example nodes and/or credentials that need to be
 - **Always** address any lint/typecheck errors/warnings, unless there is a
   **very specific reason** to ignore/disable it
 - Make sure to use **proper types whenever possible**
-- If you are updating the npm package version, make sure to **update
-  CHANGELOG.md** in the root of the repository
+- `CHANGELOG.md` is generated from commit messages by `npm run release`.
+  **Never edit it by hand**; write commit subjects that read well in a changelog
 - Read `.agents/workflow.md` for more info
 
 ## Context-specific docs
