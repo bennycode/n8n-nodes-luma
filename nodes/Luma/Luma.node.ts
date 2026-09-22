@@ -23,7 +23,8 @@ export class Luma implements INodeType {
 		defaults: {
 			name: 'Luma',
 		},
-		usableAsTool: true,
+		// Deliberately not a tool: the Image resource works on binary data, which AI tools cannot pass
+		usableAsTool: undefined,
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [
