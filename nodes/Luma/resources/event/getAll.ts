@@ -33,7 +33,11 @@ export const eventGetManyDescription: INodeProperties[] = [
 				type: 'multiOptions',
 				options: [
 					{ name: 'Manage', value: 'manage', description: 'Events this calendar manages' },
-					{ name: 'View', value: 'view', description: 'Public events listed on the calendar but managed elsewhere' },
+					{
+						name: 'View',
+						value: 'view',
+						description: 'Public events listed on the calendar but managed elsewhere',
+					},
 				],
 				default: ['manage'],
 				description: 'Which kinds of events to include',

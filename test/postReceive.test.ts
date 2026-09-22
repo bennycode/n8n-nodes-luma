@@ -14,8 +14,8 @@ function createContext(parameters: Record<string, string> = {}): IExecuteSingleF
 			parameters: {},
 		}),
 		// n8n returns the fallback for parameters the current operation does not define.
-		getNodeParameter: ((name: string, fallback?: unknown) => parameters[name] ?? fallback) as
-			IExecuteSingleFunctions['getNodeParameter'],
+		getNodeParameter: ((name: string, fallback?: unknown) =>
+			parameters[name] ?? fallback) as IExecuteSingleFunctions['getNodeParameter'],
 	};
 	return context as IExecuteSingleFunctions;
 }
@@ -34,7 +34,9 @@ describe('handleLumaError', () => {
 			headers: {},
 			body: { message: 'You are not signed in.', code: null },
 		};
-		const error = await handleLumaError.call(createContext(), [{ json: {} }], response).catch((e) => e);
+		const error = await handleLumaError
+			.call(createContext(), [{ json: {} }], response)
+			.catch((e) => e);
 		expect(error).toBeInstanceOf(NodeApiError);
 		expect(error.message).toBe('You are not signed in.');
 		expect(error.httpCode).toBe('401');
@@ -42,8 +44,14 @@ describe('handleLumaError', () => {
 	});
 
 	it('explains rate limits on 429', async () => {
-		const response: IN8nHttpFullResponse = { statusCode: 429, headers: {}, body: { message: 'Too many requests' } };
-		const error = await handleLumaError.call(createContext(), [{ json: {} }], response).catch((e) => e);
+		const response: IN8nHttpFullResponse = {
+			statusCode: 429,
+			headers: {},
+			body: { message: 'Too many requests' },
+		};
+		const error = await handleLumaError
+			.call(createContext(), [{ json: {} }], response)
+			.catch((e) => e);
 		expect(error.description).toContain('200 requests per minute');
 	});
 
@@ -74,13 +82,17 @@ describe('handleLumaError', () => {
 			headers: {},
 			body: { message: 'Calendar not found.' },
 		};
-		const error = await handleLumaError.call(createContext(), [{ json: {} }], response).catch((e) => e);
+		const error = await handleLumaError
+			.call(createContext(), [{ json: {} }], response)
+			.catch((e) => e);
 		expect(error.message).toBe('Calendar not found.');
 	});
 
 	it('falls back to a status message when the body has none', async () => {
 		const response: IN8nHttpFullResponse = { statusCode: 502, headers: {}, body: 'Bad Gateway' };
-		const error = await handleLumaError.call(createContext(), [{ json: {} }], response).catch((e) => e);
+		const error = await handleLumaError
+			.call(createContext(), [{ json: {} }], response)
+			.catch((e) => e);
 		expect(error.message).toBe('Luma request failed with status 502');
 		expect(error.description).toBeFalsy();
 	});
@@ -88,7 +100,11 @@ describe('handleLumaError', () => {
 
 describe('returnSuccess', () => {
 	it('replaces empty objects and keeps real payloads', async () => {
-		const result = await returnSuccess.call(createContext(), [{ json: {} }, { json: { id: 'evt-1' } }], ok);
+		const result = await returnSuccess.call(
+			createContext(),
+			[{ json: {} }, { json: { id: 'evt-1' } }],
+			ok,
+		);
 		expect(result.map((item) => item.json)).toEqual([{ success: true }, { id: 'evt-1' }]);
 	});
 });

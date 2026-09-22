@@ -59,5 +59,7 @@ export function verifyLumaSignature({
 
 	const expectedBuffer = Buffer.from(expected, 'hex');
 	const actualBuffer = Buffer.from(parsed.signature, 'hex');
-	return expectedBuffer.length === actualBuffer.length && timingSafeEqual(expectedBuffer, actualBuffer);
+	return (
+		expectedBuffer.length === actualBuffer.length && timingSafeEqual(expectedBuffer, actualBuffer)
+	);
 }

@@ -30,8 +30,18 @@ function createContext(response: unknown, currentParameters: Record<string, unkn
 
 describe('getEvents', () => {
 	const entries = [
-		{ id: 'evt-1', name: 'Berlin Meetup', start_at: '2026-05-01T18:00:00Z', url: 'https://lu.ma/a' },
-		{ id: 'evt-2', name: 'Vienna Workshop', start_at: '2026-06-02T18:00:00Z', url: 'https://lu.ma/b' },
+		{
+			id: 'evt-1',
+			name: 'Berlin Meetup',
+			start_at: '2026-05-01T18:00:00Z',
+			url: 'https://lu.ma/a',
+		},
+		{
+			id: 'evt-2',
+			name: 'Vienna Workshop',
+			start_at: '2026-06-02T18:00:00Z',
+			url: 'https://lu.ma/b',
+		},
 	];
 
 	it('lists newest first and labels entries with their date', async () => {

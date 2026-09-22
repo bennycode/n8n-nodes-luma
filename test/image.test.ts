@@ -1,4 +1,8 @@
-import type { IExecuteSingleFunctions, IHttpRequestOptions, IN8nHttpFullResponse } from 'n8n-workflow';
+import type {
+	IExecuteSingleFunctions,
+	IHttpRequestOptions,
+	IN8nHttpFullResponse,
+} from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
 import { describe, expect, it, vi } from 'vitest';
 import { setImageContentType, uploadImage } from '../nodes/Luma/shared/image';
@@ -38,14 +42,23 @@ describe('setImageContentType', () => {
 
 	it('rejects unsupported image types before calling Luma', async () => {
 		const { context } = createContext('image/gif');
-		await expect(setImageContentType.call(context, { url: '' })).rejects.toBeInstanceOf(NodeOperationError);
+		await expect(setImageContentType.call(context, { url: '' })).rejects.toBeInstanceOf(
+			NodeOperationError,
+		);
 	});
 });
 
 describe('uploadImage', () => {
 	it('PUTs the binary to the upload URL and returns the file URL', async () => {
 		const { context, httpRequest } = createContext('image/png');
-		const items = [{ json: { upload_url: 'https://s3.example/upload', file_url: 'https://images.lumacdn.com/x.png' } }];
+		const items = [
+			{
+				json: {
+					upload_url: 'https://s3.example/upload',
+					file_url: 'https://images.lumacdn.com/x.png',
+				},
+			},
+		];
 
 		const result = await uploadImage.call(context, items, response);
 
@@ -65,6 +78,8 @@ describe('uploadImage', () => {
 
 	it('fails clearly when Luma returns no upload URL', async () => {
 		const { context } = createContext('image/png');
-		await expect(uploadImage.call(context, [{ json: {} }], response)).rejects.toThrow('did not return an upload URL');
+		await expect(uploadImage.call(context, [{ json: {} }], response)).rejects.toThrow(
+			'did not return an upload URL',
+		);
 	});
 });

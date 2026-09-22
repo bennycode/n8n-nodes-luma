@@ -36,7 +36,8 @@ export const guestsCollection: INodeProperties = {
 		send: {
 			type: 'body',
 			property: 'guests',
-			value: '={{ ($value.guestValues ?? []).map((guest) => ({ email: guest.email, name: guest.name || null })) }}',
+			value:
+				'={{ ($value.guestValues ?? []).map((guest) => ({ email: guest.email, name: guest.name || null })) }}',
 		},
 	},
 };

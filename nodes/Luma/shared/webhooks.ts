@@ -4,7 +4,11 @@ export const ALL_WEBHOOK_EVENTS = '*';
 
 /** Webhook event types Luma can deliver, sorted by display name. */
 export const WEBHOOK_EVENT_OPTIONS: INodePropertyOptions[] = [
-	{ name: 'All Events', value: ALL_WEBHOOK_EVENTS, description: 'Every event type, including ones added later' },
+	{
+		name: 'All Events',
+		value: ALL_WEBHOOK_EVENTS,
+		description: 'Every event type, including ones added later',
+	},
 	{ name: 'Calendar Event Added', value: 'calendar.event.added' },
 	{ name: 'Calendar Event Submitted', value: 'calendar.event.submitted' },
 	{ name: 'Calendar Person Subscribed', value: 'calendar.person.subscribed' },

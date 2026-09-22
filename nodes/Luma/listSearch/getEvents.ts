@@ -28,12 +28,17 @@ export async function getEvents(
 	filter?: string,
 	paginationToken?: string,
 ): Promise<INodeListSearchResult> {
-	const response: EventListResponse = await lumaApiRequest.call(this, 'GET', '/v1/calendars/events/list', {
-		pagination_limit: PAGE_SIZE,
-		pagination_cursor: paginationToken,
-		sort_column: 'start_at',
-		sort_direction: 'desc',
-	});
+	const response: EventListResponse = await lumaApiRequest.call(
+		this,
+		'GET',
+		'/v1/calendars/events/list',
+		{
+			pagination_limit: PAGE_SIZE,
+			pagination_cursor: paginationToken,
+			sort_column: 'start_at',
+			sort_direction: 'desc',
+		},
+	);
 
 	const needle = filter?.trim().toLowerCase() ?? '';
 	const entries = needle

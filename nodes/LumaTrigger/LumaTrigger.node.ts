@@ -9,7 +9,11 @@ import {
 } from 'n8n-workflow';
 import { LUMA_CREDENTIAL_NAME, PAGE_SIZE } from '../Luma/shared/constants';
 import { lumaApiRequest } from '../Luma/shared/transport';
-import { normalizeEventTypes, sameEventTypes, WEBHOOK_EVENT_OPTIONS } from '../Luma/shared/webhooks';
+import {
+	normalizeEventTypes,
+	sameEventTypes,
+	WEBHOOK_EVENT_OPTIONS,
+} from '../Luma/shared/webhooks';
 import { verifyLumaSignature } from './signature';
 
 type LumaWebhook = {
@@ -30,16 +34,26 @@ type WebhookListResponse = {
 const MAX_WEBHOOK_PAGES = 20;
 
 function toStringArray(value: unknown): string[] {
-	return Array.isArray(value) ? value.filter((entry): entry is string => typeof entry === 'string') : [];
+	return Array.isArray(value)
+		? value.filter((entry): entry is string => typeof entry === 'string')
+		: [];
 }
 
-async function findWebhookByUrl(this: IHookFunctions, url: string): Promise<LumaWebhook | undefined> {
+async function findWebhookByUrl(
+	this: IHookFunctions,
+	url: string,
+): Promise<LumaWebhook | undefined> {
 	let cursor: string | undefined;
 	for (let page = 0; page < MAX_WEBHOOK_PAGES; page++) {
-		const response: WebhookListResponse = await lumaApiRequest.call(this, 'GET', '/v1/webhooks/list', {
-			pagination_limit: PAGE_SIZE,
-			pagination_cursor: cursor,
-		});
+		const response: WebhookListResponse = await lumaApiRequest.call(
+			this,
+			'GET',
+			'/v1/webhooks/list',
+			{
+				pagination_limit: PAGE_SIZE,
+				pagination_cursor: cursor,
+			},
+		);
 		const match = response.entries.find((webhook) => webhook.url === url);
 		if (match) return match;
 		if (!response.has_more || !response.next_cursor) return undefined;
@@ -102,11 +116,17 @@ export class LumaTrigger implements INodeType {
 
 				if (existing.status !== 'active' || !sameEventTypes(existing.event_types, eventTypes)) {
 					// Luma allows one registration per URL, so bring the existing one in line instead of adding another
-					await lumaApiRequest.call(this, 'POST', '/v2/webhooks/update', {}, {
-						id: existing.id,
-						event_types: eventTypes,
-						status: 'active',
-					});
+					await lumaApiRequest.call(
+						this,
+						'POST',
+						'/v2/webhooks/update',
+						{},
+						{
+							id: existing.id,
+							event_types: eventTypes,
+							status: 'active',
+						},
+					);
 				}
 
 				webhookData.webhookId = existing.id;
@@ -119,10 +139,16 @@ export class LumaTrigger implements INodeType {
 				const webhookData = this.getWorkflowStaticData('node');
 				const eventTypes = normalizeEventTypes(toStringArray(this.getNodeParameter('events')));
 
-				const response: LumaWebhook = await lumaApiRequest.call(this, 'POST', '/v2/webhooks/create', {}, {
-					url: webhookUrl,
-					event_types: eventTypes,
-				});
+				const response: LumaWebhook = await lumaApiRequest.call(
+					this,
+					'POST',
+					'/v2/webhooks/create',
+					{},
+					{
+						url: webhookUrl,
+						event_types: eventTypes,
+					},
+				);
 
 				if (!response.id || !response.secret) return false;
 				webhookData.webhookId = response.id;
@@ -135,7 +161,13 @@ export class LumaTrigger implements INodeType {
 				if (typeof webhookData.webhookId !== 'string') return true;
 
 				try {
-					await lumaApiRequest.call(this, 'POST', '/v1/webhooks/delete', {}, { id: webhookData.webhookId });
+					await lumaApiRequest.call(
+						this,
+						'POST',
+						'/v1/webhooks/delete',
+						{},
+						{ id: webhookData.webhookId },
+					);
 				} catch (error) {
 					this.logger.warn(`Could not delete Luma webhook ${webhookData.webhookId}`, {
 						error: error instanceof Error ? error.message : String(error),

@@ -20,27 +20,27 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 ## Operations
 
 - Calendar
-    - **Get** the calendar the API key belongs to
+  - **Get** the calendar the API key belongs to
 - Contact
-    - **Get Many** contacts, with search, membership status and sorting filters
+  - **Get Many** contacts, with search, membership status and sorting filters
 - Contact Tag and Event Tag
-    - **Create**, **Get Many**, **Update** and **Delete** tags
-    - **Apply** and **Unapply** a tag to contacts (by email or user ID) or to events
+  - **Create**, **Get Many**, **Update** and **Delete** tags
+  - **Apply** and **Unapply** a tag to contacts (by email or user ID) or to events
 - Event
-    - **Create** an event
-    - **Get** an event by ID or from a searchable list
-    - **Get Many** events, filtered by date range, submission status, access and sort order
-    - **Update** an event
+  - **Create** an event
+  - **Get** an event by ID or from a searchable list
+  - **Get Many** events, filtered by date range, submission status, access and sort order
+  - **Update** an event
 - Guest
-    - **Add** guests to an event, optionally with a ticket type and approval status
-    - **Get** a guest by ID, guest key, ticket key or email
-    - **Get Many** guests of an event, filtered by approval status and sort order
-    - **Send Invites** so guests can accept an invitation
-    - **Update Status** to approve, decline or waitlist a guest
+  - **Add** guests to an event, optionally with a ticket type and approval status
+  - **Get** a guest by ID, guest key, ticket key or email
+  - **Get Many** guests of an event, filtered by approval status and sort order
+  - **Send Invites** so guests can accept an invitation
+  - **Update Status** to approve, decline or waitlist a guest
 - Image
-    - **Upload** a JPEG or PNG from a binary field to the Luma CDN and get back its URL
+  - **Upload** a JPEG or PNG from a binary field to the Luma CDN and get back its URL
 - Ticket Type
-    - **Create**, **Get**, **Get Many**, **Update** and **Delete** ticket types of an event
+  - **Create**, **Get**, **Get Many**, **Update** and **Delete** ticket types of an event
 
 ## Trigger
 
@@ -80,9 +80,13 @@ npm run dev     # starts n8n on http://localhost:5678 with this node linked
 npm run build   # compiles to dist/
 npm run lint    # community node lint rules
 npm run lint:memory  # memory-safety rules, see below
+npm run format       # format with Prettier
 npm test        # unit tests
 npm run sync:openapi  # regenerate everything derived from Luma's OpenAPI spec
 ```
+
+Prettier runs on staged files through a [lefthook](https://lefthook.dev) pre-commit hook.
+`npm install` sets the hook up; if your npm blocks install scripts, run `npx lefthook install` once.
 
 ### Keeping up with the Luma API
 

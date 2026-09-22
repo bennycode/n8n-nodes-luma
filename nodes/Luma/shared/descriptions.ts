@@ -45,7 +45,8 @@ export const guestIdentifier: INodeProperties = {
 	default: '',
 	required: true,
 	placeholder: 'e.g. gst-Ab12Cd34 or name@email.com',
-	description: 'Guest ID (starts with "gst-"), guest key (starts with "g-"), ticket key, or the guest\'s email address',
+	description:
+		'Guest ID (starts with "gst-"), guest key (starts with "g-"), ticket key, or the guest\'s email address',
 };
 
 /**

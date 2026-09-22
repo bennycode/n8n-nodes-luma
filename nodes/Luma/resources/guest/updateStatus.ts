@@ -55,7 +55,8 @@ export const guestUpdateStatusDescription: INodeProperties[] = [
 				type: 'string',
 				typeOptions: { rows: 3 },
 				default: '',
-				description: 'Personal note for the status email, up to 200 characters. Cannot be combined with Send Email disabled.',
+				description:
+					'Personal note for the status email, up to 200 characters. Cannot be combined with Send Email disabled.',
 				routing: {
 					send: {
 						type: 'body',

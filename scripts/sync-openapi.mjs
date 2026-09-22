@@ -146,10 +146,7 @@ const paths = {};
 for (const [path, methods] of Object.entries(spec.paths ?? {})) {
 	for (const method of HTTP_METHODS.filter((candidate) => candidate in methods)) {
 		const operation = methods[method];
-		const body = resolveSchema(
-			operation.requestBody?.content?.['application/json']?.schema,
-			spec,
-		);
+		const body = resolveSchema(operation.requestBody?.content?.['application/json']?.schema, spec);
 		paths[path] ??= {};
 		paths[path][method.toUpperCase()] = {
 			query: (operation.parameters ?? [])

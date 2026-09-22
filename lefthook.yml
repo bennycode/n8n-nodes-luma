@@ -1,0 +1,8 @@
+# Git hooks managed by lefthook (https://lefthook.dev). Installed by `npm install`
+# through the `prepare` script; run `npx lefthook install` to set them up by hand.
+pre-commit:
+  commands:
+    prettier:
+      glob: '*.{ts,js,mjs,json,md,yml,yaml}'
+      run: npx prettier --write {staged_files}
+      stage_fixed: true

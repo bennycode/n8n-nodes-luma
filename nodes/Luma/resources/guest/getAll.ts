@@ -9,7 +9,12 @@ const showOnlyForGuestGetMany = {
 	},
 };
 
-export const guestGetManyQueryParameters = ['approval_status', 'event_id', 'sort_column', 'sort_direction'];
+export const guestGetManyQueryParameters = [
+	'approval_status',
+	'event_id',
+	'sort_column',
+	'sort_direction',
+];
 
 export const guestGetManyDescription: INodeProperties[] = [
 	{

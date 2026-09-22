@@ -2,11 +2,7 @@ import type { INodeProperties } from 'n8n-workflow';
 import { eventSelect } from '../../shared/descriptions';
 import { handleLumaError, returnSuccess } from '../../shared/postReceive';
 import { sortByDisplayName } from '../event/fields';
-import {
-	coreTicketTypeFields,
-	optionalTicketTypeFields,
-	ticketTypeIdField,
-} from './fields';
+import { coreTicketTypeFields, optionalTicketTypeFields, ticketTypeIdField } from './fields';
 
 const showOnlyForTicketTypes = {
 	resource: ['ticketType'],

@@ -16,7 +16,11 @@ export const ticketTypeIdField: INodeProperties = {
 
 export const ticketTypeKindOptions = [
 	{ name: 'Free', value: 'free' },
-	{ name: 'Paid', value: 'paid', description: 'Requires a Stripe account connected to the calendar' },
+	{
+		name: 'Paid',
+		value: 'paid',
+		description: 'Requires a Stripe account connected to the calendar',
+	},
 ];
 
 /** Attributes that are required on Create but optional on Update. */

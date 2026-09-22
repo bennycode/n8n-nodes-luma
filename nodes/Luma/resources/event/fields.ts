@@ -76,7 +76,8 @@ export const optionalEventFields: INodeProperties[] = [
 		type: 'number',
 		default: 0,
 		typeOptions: { minValue: 0 },
-		description: 'Registration closes, or the waitlist opens, once this many guests are approved. 0 means unlimited.',
+		description:
+			'Registration closes, or the waitlist opens, once this many guests are approved. 0 means unlimited.',
 		routing: {
 			send: {
 				type: 'body',

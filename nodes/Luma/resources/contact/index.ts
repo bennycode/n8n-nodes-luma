@@ -13,7 +13,12 @@ const showOnlyForContactGetMany = {
 	},
 };
 
-export const contactGetManyQueryParameters = ['membership_status', 'query', 'sort_column', 'sort_direction'];
+export const contactGetManyQueryParameters = [
+	'membership_status',
+	'query',
+	'sort_column',
+	'sort_direction',
+];
 
 export const contactDescription: INodeProperties[] = [
 	{

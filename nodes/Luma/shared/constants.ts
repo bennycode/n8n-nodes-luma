@@ -34,7 +34,11 @@ export const EVENT_VISIBILITY_OPTIONS: INodePropertyOptions[] = [
 ];
 
 export const LOCATION_VISIBILITY_OPTIONS: INodePropertyOptions[] = [
-	{ name: 'Guests Only', value: 'guests-only', description: 'Only approved guests see the exact address' },
+	{
+		name: 'Guests Only',
+		value: 'guests-only',
+		description: 'Only approved guests see the exact address',
+	},
 	{ name: 'Public', value: 'public' },
 ];
 

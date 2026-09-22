@@ -30,11 +30,16 @@ export const guestAddDescription: INodeProperties[] = [
 				type: 'options',
 				options: [
 					{ name: 'Approved', value: 'approved', description: 'Guests are registered as going' },
-					{ name: 'Pending Approval', value: 'pending_approval', description: 'Guests wait for host review' },
+					{
+						name: 'Pending Approval',
+						value: 'pending_approval',
+						description: 'Guests wait for host review',
+					},
 					{ name: 'Waitlist', value: 'waitlist' },
 				],
 				default: 'approved',
-				description: 'Status to assign to each added guest. To send an invite the guest can accept, use the Send Invites operation instead.',
+				description:
+					'Status to assign to each added guest. To send an invite the guest can accept, use the Send Invites operation instead.',
 				routing: {
 					send: {
 						type: 'body',

@@ -18,10 +18,15 @@ export async function getTicketTypes(this: ILoadOptionsFunctions): Promise<INode
 		return [];
 	}
 
-	const response: TicketTypeListResponse = await lumaApiRequest.call(this, 'GET', '/v1/events/ticket-types/list', {
-		event_id: eventId,
-		include_hidden: true,
-	});
+	const response: TicketTypeListResponse = await lumaApiRequest.call(
+		this,
+		'GET',
+		'/v1/events/ticket-types/list',
+		{
+			event_id: eventId,
+			include_hidden: true,
+		},
+	);
 
 	return response.entries.map((ticketType) => ({
 		name: `${ticketType.name} (${ticketType.type}${ticketType.is_hidden ? ', hidden' : ''})`,

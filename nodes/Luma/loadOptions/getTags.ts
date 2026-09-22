@@ -11,8 +11,15 @@ type TagListResponse = {
 	entries: Tag[];
 };
 
-async function listTags(this: ILoadOptionsFunctions, kind: 'contact' | 'event'): Promise<INodePropertyOptions[]> {
-	const response: TagListResponse = await lumaApiRequest.call(this, 'GET', `/v1/calendars/${kind}-tags/list`);
+async function listTags(
+	this: ILoadOptionsFunctions,
+	kind: 'contact' | 'event',
+): Promise<INodePropertyOptions[]> {
+	const response: TagListResponse = await lumaApiRequest.call(
+		this,
+		'GET',
+		`/v1/calendars/${kind}-tags/list`,
+	);
 	return response.entries
 		.map((tag) => ({ name: tag.name, value: tag.id }))
 		.sort((a, b) => a.name.localeCompare(b.name));
