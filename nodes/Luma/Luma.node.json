@@ -2,7 +2,7 @@
 	"node": "n8n-nodes-luma.luma",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
-	"categories": ["Marketing", "Productivity"],
+	"categories": ["Marketing & Content", "Productivity"],
 	"alias": ["lu.ma", "Events", "Guests", "RSVP"],
 	"resources": {
 		"credentialDocumentation": [
