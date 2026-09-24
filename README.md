@@ -81,7 +81,7 @@ npm install
 npm run dev     # starts n8n on http://localhost:5678 with this node linked
 npm run build   # compiles to dist/
 npm run lint    # community node lint rules
-npm run lint:memory  # memory-safety rules, see below
+npm run lint:memory  # memory-safety rules from lint/memory
 npm run format       # format with Prettier
 npm test        # unit tests
 npm run sync:openapi  # regenerate everything derived from Luma's OpenAPI spec
@@ -106,22 +106,6 @@ The fixture is what lets `test/description.test.ts` prove offline that the node
 only calls endpoints and parameters Luma actually documents. Run the sync after
 adding an operation, and whenever Luma ships API changes; the tests fail if an
 operation has no schema.
-
-### Memory lint
-
-`npm run lint:memory` runs four extra ESLint rules from `lint/memory/` that
-flag the code shapes behind most out-of-memory crashes in community nodes:
-module-level collections that grow across executions, `Promise.all` over every
-input item, whole files or binary items loaded into a Buffer, and timers or
-listeners registered in `trigger()` without a matching cleanup in
-`closeFunction`. They are heuristics, so a hit means "look here", not "this
-leaks".
-
-The rules live in a separate config (`eslint.memory.config.mjs`) because
-`eslint.config.mjs` has to stay at the `@n8n/node-cli` default for the package
-to keep its n8n Cloud eligibility. Justified exceptions go into that config as
-per-file overrides with a comment, not as inline disable comments, since the
-default lint does not know these rules.
 
 ## Resources
 
