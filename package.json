@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-luma",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "n8n community node for Luma: manage events, guests and contacts through the Luma API",
 	"license": "MIT",
 	"homepage": "https://github.com/bennycode/n8n-nodes-luma",
