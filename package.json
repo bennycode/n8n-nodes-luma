@@ -16,7 +16,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/bennycode/n8n-nodes-luma.git"
+		"url": "git+https://github.com/bennycode/n8n-nodes-luma.git"
 	},
 	"scripts": {
 		"build": "n8n-node build",
@@ -35,6 +35,9 @@
 	"files": [
 		"dist"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"n8n": {
 		"n8nNodesApiVersion": 1,
 		"strict": true,
