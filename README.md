@@ -54,7 +54,7 @@ If a webhook for the same URL already exists, the trigger reuses it and updates 
 
 ## Credentials
 
-Create an API key in your Luma calendar under Settings > Options > API, then paste it into a **Luma API** credential in n8n. The credential test calls the "get self" endpoint.
+API access requires a [Luma Plus](https://help.luma.com/p/luma-plus) subscription for the calendar. With Luma Plus active, open the calendar and go to Settings, Developer, API Keys to create a key, then paste it into a **Luma API** credential in n8n. The credential test calls the "get self" endpoint.
 
 Calendar API keys are limited to 200 requests per minute, organization keys to 500. When the limit is hit the node fails with a message that says so. Use the node's batching settings under Options to space requests out.
 
