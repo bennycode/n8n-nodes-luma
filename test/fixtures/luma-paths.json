@@ -1,0 +1,718 @@
+{
+	"/v1/events/get": {
+		"GET": {
+			"query": [
+				"event_id"
+			],
+			"body": []
+		}
+	},
+	"/v1/calendars/get": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/v1/calendars/events/list": {
+		"GET": {
+			"query": [
+				"access",
+				"after",
+				"before",
+				"pagination_cursor",
+				"pagination_limit",
+				"platforms",
+				"sort_column",
+				"sort_direction",
+				"status"
+			],
+			"body": []
+		}
+	},
+	"/v1/events/guests/get": {
+		"GET": {
+			"query": [
+				"event_id",
+				"id"
+			],
+			"body": []
+		}
+	},
+	"/v1/events/guests/list": {
+		"GET": {
+			"query": [
+				"approval_status",
+				"event_id",
+				"pagination_cursor",
+				"pagination_limit",
+				"sort_column",
+				"sort_direction"
+			],
+			"body": []
+		}
+	},
+	"/v1/users/get-self": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/v1/calendars/contact-tags/list": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/v1/calendars/event-tags/list": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/v1/calendars/admins/list": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/v1/entities/lookup": {
+		"GET": {
+			"query": [
+				"slug"
+			],
+			"body": []
+		}
+	},
+	"/v1/calendars/events/lookup": {
+		"GET": {
+			"query": [
+				"event_api_id",
+				"event_id",
+				"platform",
+				"url"
+			],
+			"body": []
+		}
+	},
+	"/v1/calendars/contacts/list": {
+		"GET": {
+			"query": [
+				"calendar_membership_tier_id",
+				"membership_status",
+				"pagination_cursor",
+				"pagination_limit",
+				"query",
+				"sort_column",
+				"sort_direction",
+				"tags"
+			],
+			"body": []
+		}
+	},
+	"/v1/events/coupons/list": {
+		"GET": {
+			"query": [
+				"event_id",
+				"pagination_cursor",
+				"pagination_limit"
+			],
+			"body": []
+		}
+	},
+	"/v1/calendars/coupons/list": {
+		"GET": {
+			"query": [
+				"pagination_cursor",
+				"pagination_limit"
+			],
+			"body": []
+		}
+	},
+	"/v1/events/ticket-types/list": {
+		"GET": {
+			"query": [
+				"event_id",
+				"include_hidden"
+			],
+			"body": []
+		}
+	},
+	"/v1/events/ticket-types/get": {
+		"GET": {
+			"query": [
+				"event_ticket_type_id"
+			],
+			"body": []
+		}
+	},
+	"/v1/memberships/tiers/list": {
+		"GET": {
+			"query": [
+				"pagination_cursor",
+				"pagination_limit"
+			],
+			"body": []
+		}
+	},
+	"/v1/webhooks/list": {
+		"GET": {
+			"query": [
+				"pagination_cursor",
+				"pagination_limit"
+			],
+			"body": []
+		}
+	},
+	"/v2/webhooks/get": {
+		"GET": {
+			"query": [
+				"id"
+			],
+			"body": []
+		}
+	},
+	"/v1/organizations/admins/list": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/v1/organizations/calendars/list": {
+		"GET": {
+			"query": [
+				"pagination_cursor",
+				"pagination_limit"
+			],
+			"body": []
+		}
+	},
+	"/v1/organizations/events/list": {
+		"GET": {
+			"query": [
+				"after",
+				"before",
+				"pagination_cursor",
+				"pagination_limit",
+				"sort_direction"
+			],
+			"body": []
+		}
+	},
+	"/v1/events/create": {
+		"POST": {
+			"query": [],
+			"body": [
+				"can_register_for_multiple_tickets",
+				"coordinate",
+				"cover_url",
+				"description_md",
+				"end_at",
+				"feedback_email",
+				"font",
+				"geo_address_json",
+				"location_visibility",
+				"max_capacity",
+				"meeting_url",
+				"name",
+				"name_requirement",
+				"phone_number_requirement",
+				"registration_open",
+				"registration_questions",
+				"reminders_disabled",
+				"show_guest_list",
+				"slug",
+				"start_at",
+				"theme",
+				"ticket_types",
+				"timezone",
+				"tint_color",
+				"visibility",
+				"waitlist_status"
+			]
+		}
+	},
+	"/v1/events/update": {
+		"POST": {
+			"query": [],
+			"body": [
+				"can_register_for_multiple_tickets",
+				"coordinate",
+				"cover_url",
+				"description_md",
+				"end_at",
+				"event_id",
+				"feedback_email",
+				"font",
+				"geo_address_json",
+				"location_visibility",
+				"max_capacity",
+				"meeting_url",
+				"name",
+				"name_requirement",
+				"phone_number_requirement",
+				"registration_open",
+				"registration_questions",
+				"reminders_disabled",
+				"show_guest_list",
+				"slug",
+				"start_at",
+				"suppress_notifications",
+				"theme",
+				"timezone",
+				"tint_color",
+				"visibility",
+				"waitlist_status"
+			]
+		}
+	},
+	"/v1/events/guests/update-status": {
+		"POST": {
+			"query": [],
+			"body": [
+				"event_id",
+				"guest_id",
+				"message",
+				"send_email",
+				"should_refund",
+				"status"
+			]
+		}
+	},
+	"/v1/events/guests/update-tickets": {
+		"POST": {
+			"query": [],
+			"body": [
+				"event_id",
+				"guest_id",
+				"send_email",
+				"ticket_ids_to_remove",
+				"tickets_to_add"
+			]
+		}
+	},
+	"/v1/events/guests/send-invites": {
+		"POST": {
+			"query": [],
+			"body": [
+				"event_id",
+				"guests",
+				"message"
+			]
+		}
+	},
+	"/v1/events/guests/add": {
+		"POST": {
+			"query": [],
+			"body": [
+				"approval_status",
+				"event_id",
+				"guests",
+				"send_email",
+				"ticket",
+				"tickets"
+			]
+		}
+	},
+	"/v1/events/hosts/add": {
+		"POST": {
+			"query": [],
+			"body": [
+				"access_level",
+				"email",
+				"event_id",
+				"is_visible",
+				"name"
+			]
+		}
+	},
+	"/v1/events/hosts/update": {
+		"POST": {
+			"query": [],
+			"body": [
+				"access_level",
+				"email",
+				"event_id",
+				"is_visible"
+			]
+		}
+	},
+	"/v1/events/hosts/remove": {
+		"POST": {
+			"query": [],
+			"body": [
+				"email",
+				"event_id"
+			]
+		}
+	},
+	"/v1/events/coupons/create": {
+		"POST": {
+			"query": [],
+			"body": [
+				"code",
+				"discount",
+				"event_id",
+				"event_ticket_type_id",
+				"remaining_count",
+				"valid_end_at",
+				"valid_start_at"
+			]
+		}
+	},
+	"/v1/events/coupons/update": {
+		"POST": {
+			"query": [],
+			"body": [
+				"code",
+				"event_id",
+				"remaining_count",
+				"valid_end_at",
+				"valid_start_at"
+			]
+		}
+	},
+	"/v1/calendars/coupons/create": {
+		"POST": {
+			"query": [],
+			"body": [
+				"code",
+				"discount",
+				"remaining_count",
+				"valid_end_at",
+				"valid_start_at"
+			]
+		}
+	},
+	"/v1/calendars/coupons/update": {
+		"POST": {
+			"query": [],
+			"body": [
+				"code",
+				"remaining_count",
+				"valid_end_at",
+				"valid_start_at"
+			]
+		}
+	},
+	"/v1/calendars/contacts/import": {
+		"POST": {
+			"query": [],
+			"body": [
+				"contacts",
+				"tags"
+			]
+		}
+	},
+	"/v1/calendars/contacts/block": {
+		"POST": {
+			"query": [],
+			"body": [
+				"contact_id",
+				"email"
+			]
+		}
+	},
+	"/v1/calendars/contacts/remove": {
+		"POST": {
+			"query": [],
+			"body": [
+				"contact_id",
+				"email"
+			]
+		}
+	},
+	"/v1/calendars/contacts/restore": {
+		"POST": {
+			"query": [],
+			"body": [
+				"contact_id",
+				"email"
+			]
+		}
+	},
+	"/v1/calendars/contact-tags/create": {
+		"POST": {
+			"query": [],
+			"body": [
+				"color",
+				"name"
+			]
+		}
+	},
+	"/v1/calendars/contact-tags/update": {
+		"POST": {
+			"query": [],
+			"body": [
+				"color",
+				"name",
+				"tag_id"
+			]
+		}
+	},
+	"/v1/calendars/contact-tags/delete": {
+		"POST": {
+			"query": [],
+			"body": [
+				"tag_id"
+			]
+		}
+	},
+	"/v1/calendars/contact-tags/apply": {
+		"POST": {
+			"query": [],
+			"body": [
+				"emails",
+				"tag",
+				"user_ids"
+			]
+		}
+	},
+	"/v1/calendars/contact-tags/unapply": {
+		"POST": {
+			"query": [],
+			"body": [
+				"emails",
+				"tag",
+				"user_ids"
+			]
+		}
+	},
+	"/v1/calendars/event-tags/create": {
+		"POST": {
+			"query": [],
+			"body": [
+				"color",
+				"name"
+			]
+		}
+	},
+	"/v1/calendars/event-tags/update": {
+		"POST": {
+			"query": [],
+			"body": [
+				"color",
+				"name",
+				"tag_id"
+			]
+		}
+	},
+	"/v1/calendars/event-tags/delete": {
+		"POST": {
+			"query": [],
+			"body": [
+				"tag_id"
+			]
+		}
+	},
+	"/v1/calendars/event-tags/apply": {
+		"POST": {
+			"query": [],
+			"body": [
+				"event_ids",
+				"tag"
+			]
+		}
+	},
+	"/v1/calendars/event-tags/unapply": {
+		"POST": {
+			"query": [],
+			"body": [
+				"event_ids",
+				"tag"
+			]
+		}
+	},
+	"/v1/calendars/events/add": {
+		"POST": {
+			"query": [],
+			"body": [
+				"coordinate",
+				"duration_interval",
+				"event_api_id",
+				"event_id",
+				"geo_address_json",
+				"geo_latitude",
+				"geo_longitude",
+				"host",
+				"name",
+				"platform",
+				"start_at",
+				"submission_mode",
+				"timezone",
+				"url"
+			]
+		}
+	},
+	"/v1/calendars/events/approve": {
+		"POST": {
+			"query": [],
+			"body": [
+				"calendar_event_id"
+			]
+		}
+	},
+	"/v1/calendars/events/reject": {
+		"POST": {
+			"query": [],
+			"body": [
+				"calendar_event_id",
+				"message"
+			]
+		}
+	},
+	"/v1/images/create-upload-url": {
+		"POST": {
+			"query": [],
+			"body": [
+				"content_type"
+			]
+		}
+	},
+	"/v1/events/ticket-types/create": {
+		"POST": {
+			"query": [],
+			"body": [
+				"cents",
+				"currency",
+				"description",
+				"event_id",
+				"is_flexible",
+				"is_hidden",
+				"max_capacity",
+				"min_cents",
+				"name",
+				"require_approval",
+				"type",
+				"valid_end_at",
+				"valid_start_at"
+			]
+		}
+	},
+	"/v1/events/ticket-types/update": {
+		"POST": {
+			"query": [],
+			"body": [
+				"cents",
+				"currency",
+				"description",
+				"event_ticket_type_id",
+				"is_flexible",
+				"is_hidden",
+				"max_capacity",
+				"min_cents",
+				"name",
+				"require_approval",
+				"type",
+				"valid_end_at",
+				"valid_start_at"
+			]
+		}
+	},
+	"/v1/events/ticket-types/delete": {
+		"POST": {
+			"query": [],
+			"body": [
+				"event_ticket_type_id"
+			]
+		}
+	},
+	"/v1/memberships/members/add": {
+		"POST": {
+			"query": [],
+			"body": [
+				"email",
+				"membership_tier_id",
+				"registration_answers",
+				"skip_payment"
+			]
+		}
+	},
+	"/v1/memberships/members/update-status": {
+		"POST": {
+			"query": [],
+			"body": [
+				"status",
+				"user_id"
+			]
+		}
+	},
+	"/v2/webhooks/create": {
+		"POST": {
+			"query": [],
+			"body": [
+				"event_types",
+				"url"
+			]
+		}
+	},
+	"/v2/webhooks/update": {
+		"POST": {
+			"query": [],
+			"body": [
+				"event_types",
+				"id",
+				"status"
+			]
+		}
+	},
+	"/v1/webhooks/delete": {
+		"POST": {
+			"query": [],
+			"body": [
+				"id"
+			]
+		}
+	},
+	"/v1/events/cancel/request": {
+		"POST": {
+			"query": [],
+			"body": [
+				"event_id"
+			]
+		}
+	},
+	"/v1/events/cancel": {
+		"POST": {
+			"query": [],
+			"body": [
+				"cancellation_token",
+				"event_id",
+				"should_refund"
+			]
+		}
+	},
+	"/v1/calendars/update": {
+		"POST": {
+			"query": [],
+			"body": [
+				"avatar_url",
+				"calendar_id",
+				"description",
+				"name",
+				"slug",
+				"tint_color"
+			]
+		}
+	},
+	"/v2/organizations/calendars/create": {
+		"POST": {
+			"query": [],
+			"body": [
+				"avatar_url",
+				"description",
+				"name",
+				"slug",
+				"tint_color"
+			]
+		}
+	},
+	"/v1/organizations/events/transfer-calendar": {
+		"POST": {
+			"query": [],
+			"body": [
+				"calendar_id",
+				"event_id"
+			]
+		}
+	}
+}

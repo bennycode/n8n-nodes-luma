@@ -1,0 +1,90 @@
+{
+	"type": "object",
+	"properties": {
+		"id": {
+			"type": "string"
+		},
+		"user_id": {
+			"type": "string"
+		},
+		"created_at": {
+			"type": "string"
+		},
+		"event_approved_count": {
+			"type": "number"
+		},
+		"event_checked_in_count": {
+			"type": "number"
+		},
+		"revenue_usd_cents": {
+			"type": "number"
+		},
+		"tags": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"membership": {
+			"type": "object",
+			"properties": {
+				"status": {
+					"type": "string"
+				},
+				"calendar_membership_tier_id": {
+					"type": "string"
+				},
+				"registration_answers": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"label": {
+								"type": "string"
+							},
+							"question_id": {
+								"type": "string"
+							},
+							"value": {
+								"type": "string"
+							},
+							"question_type": {
+								"type": "string"
+							},
+							"multiple": {
+								"type": "boolean"
+							},
+							"multiline": {
+								"type": "boolean"
+							}
+						}
+					}
+				}
+			}
+		},
+		"name": {
+			"type": "string"
+		},
+		"avatar_url": {
+			"type": "string"
+		},
+		"email": {
+			"type": "string"
+		},
+		"first_name": {
+			"type": "string"
+		},
+		"last_name": {
+			"type": "string"
+		}
+	},
+	"version": 1
+}

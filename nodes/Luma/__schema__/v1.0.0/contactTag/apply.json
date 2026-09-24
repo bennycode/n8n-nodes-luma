@@ -1,0 +1,12 @@
+{
+	"type": "object",
+	"properties": {
+		"applied_count": {
+			"type": "number"
+		},
+		"skipped_count": {
+			"type": "number"
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,76 @@
+{
+	"type": "object",
+	"properties": {
+		"id": {
+			"type": "string"
+		},
+		"name": {
+			"type": "string"
+		},
+		"slug": {
+			"type": "string"
+		},
+		"avatar_url": {
+			"type": "string"
+		},
+		"url": {
+			"type": "string"
+		},
+		"description": {
+			"type": "string"
+		},
+		"social_image_url": {
+			"type": "string"
+		},
+		"cover_image_url": {
+			"type": "string"
+		},
+		"is_personal": {
+			"type": "boolean"
+		},
+		"location": {
+			"type": "object",
+			"properties": {
+				"city": {
+					"type": "string"
+				},
+				"region": {
+					"type": "string"
+				},
+				"country": {
+					"type": "string"
+				},
+				"country_code": {
+					"type": "string"
+				},
+				"timezone": {
+					"type": "string"
+				}
+			}
+		},
+		"coordinate": {
+			"type": "object",
+			"properties": {
+				"longitude": {
+					"type": "number"
+				},
+				"latitude": {
+					"type": "number"
+				}
+			}
+		},
+		"instagram_handle": {
+			"type": "string"
+		},
+		"twitter_handle": {
+			"type": "string"
+		},
+		"youtube_handle": {
+			"type": "string"
+		},
+		"website": {
+			"type": "string"
+		}
+	},
+	"version": 1
+}

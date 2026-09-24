@@ -1,0 +1,17 @@
+{
+	"type": "object",
+	"properties": {
+		"skipped": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"email": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	},
+	"version": 1
+}
